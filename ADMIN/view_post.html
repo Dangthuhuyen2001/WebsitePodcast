@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View post</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
 <body>
@@ -74,7 +76,13 @@
                 <div class="right">
                     <div class="right__content">
                         <div class="right__title">Dashboard</div>
-                        <p class="right__desc">View post</p>
+                        <div class="right__search">
+                            <p class="right__desc">View posts</p>
+                            <div class="right__inputSearch">
+                                <input type="text" placeholder="Search here...">
+                                <i class="las la-search"></i>
+                            </div>
+                        </div>
                         <div class="right__table">
                             <div class="right__tableWrapper">
                                 <table>
@@ -113,9 +121,31 @@
                                             <td data-label="Xoá" class="right__iconTable"><a href=""><img
                                                         src="assets/icon-trash-black.svg" alt=""></a></td>
                                         </tr>
+                                        <tr>
+                                            <td data-label="STT">2</td>
+                                            <td data-label="Title">Covid-19</td>
+                                            <td data-label="Image"><img src="../IMG/instagram-logo.png""></td>
+                                            <td data-label="Audio">thang_nam.mp3</td>
+                                            <td data-label="Category">Khởi nghiệp</td>
+                                            <td data-label="Course">Khóa học</td>
+                                            <td data-label="Rank">5 sao</td>
+                                            <td data-label="Content" id="limit">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+                                                ipsum molestias quos enim. Culpa aliquid saepe nostrum inventore
+                                                mollitia enim ea, sint dolores autem placeat labore molestiae nemo
+                                                minima natus?
+                                            </td>
+                                            <td data-label="Sửa" class="right__iconTable"><a href="edit_post.html"><img
+                                                        src="assets/icon-edit.svg" alt=""></a></td>
+                                            <td data-label="Xoá" class="right__iconTable"><a href=""><img
+                                                        src="assets/icon-trash-black.svg" alt=""></a></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
+                            <a href="" class="right__tableMore">
+                                <p>View all</p> <img src="assets/arrow-right-black.svg" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -125,18 +155,5 @@
 
     <script src="js/main.js"></script>
 </body>
-<script>
-    function truncateText(selector, maxLength) {
-        var element = document.querySelector(selector),
-            truncated = element.innerText;
-
-        if (truncated.length > maxLength) {
-            truncated = truncated.substr(0, maxLength) + '...';
-        }
-        return truncated;
-    }
-
-    document.querySelector('#limit').innerText = truncateText('#limit', 40);
-</script>
 
 </html>
