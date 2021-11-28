@@ -36,11 +36,11 @@
         <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
       </div>
       <!-- Form -->
-      <form action="" method="POST" class="form__input">
+      <form method="POST" class="form__input" name="myForm" id="myForm">
         <div>
           <div class="login__input">
             <div class="input_account">
-              <input type="text" placeholder="Tài khoản hoặc email" required>
+              <input type="text" placeholder="Tài khoản hoặc email"  required>
             </div>
             <div class="input_password">
               <input type="password" placeholder="Mật khẩu" required>
@@ -50,7 +50,7 @@
             <span>Quên mật khẩu?</span>
           </div>
           <div class="btn__login">
-            <button class="btn" type="submit">Đăng nhập</button>
+            <input type="button" value="Đăng nhập" onclick="submitInfor()"></input>
           </div>
         </div>
       </form>
@@ -89,5 +89,44 @@
   </div>
 
 </body>
+<script>
+  function submitInfor() {
+    var postApi = "http://localhost:8083/authenticate"
+  let form = document.forms["myForm"];
+  let fd = new FormData(form);
+  let data = {
+    username: "levandongbavi99@gmail.com",
+	    password: "123456@A"
+  };
+  for (let [key, prop] of fd) {
+    data[key] = prop;
+  }
+  VALUE = JSON.stringify(data, null, 2);
+  console.log(VALUE);
 
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Origin','*')
+  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS')
+  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept')
+
+
+  fetch(postApi, {
+    method: 'POST',
+    headers: myHeaders,
+    mode:"cors",
+    cache: 'default',
+    body: VALUE,
+    Credential:false,
+  })
+    .then(data => data.json())
+    .then(data => { console.log(data)
+      localStorage.setItem("token",data.jwtToken)
+      window.location.href = "/SRC/HTML/homepage.html"
+     })
+    .catch((err) => {
+      console.error(err);
+    })
+}
+</script>
 </html>
