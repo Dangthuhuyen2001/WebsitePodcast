@@ -36,21 +36,21 @@
         <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
       </div>
       <!-- Form -->
-      <form method="POST" class="form__input" name="myForm" id="myForm">
+      <form method="post" class="form__input" name="myForm" id="myForm">
         <div>
           <div class="login__input">
             <div class="input_account">
-              <input type="text" placeholder="Tài khoản hoặc email"  required>
+              <input type="text" id="username" name="username" placeholder="Tài khoản hoặc email"  required >
             </div>
             <div class="input_password">
-              <input type="password" placeholder="Mật khẩu" required>
+              <input type="password"  id="password" name="password" placeholder="Mật khẩu" required >
             </div>
           </div>
           <div class="forget__password">
             <span>Quên mật khẩu?</span>
           </div>
           <div class="btn__login">
-            <input type="button" value="Đăng nhập" onclick="submitInfor()"></input>
+            <input type="button" value="Đăng nhập" onclick="submitInfor();"></input>
           </div>
         </div>
       </form>
@@ -91,18 +91,14 @@
 </body>
 <script>
   function submitInfor() {
-    var postApi = "http://localhost:8083/authenticate"
+    var postApi = "http://localhost:8080/authenticate"
   let form = document.forms["myForm"];
   let fd = new FormData(form);
-  let data = {
-    username: "levandongbavi99@gmail.com",
-	    password: "123456@A"
-  };
+  let data = {};
   for (let [key, prop] of fd) {
     data[key] = prop;
   }
   VALUE = JSON.stringify(data, null, 2);
-  console.log(VALUE);
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -122,7 +118,7 @@
     .then(data => data.json())
     .then(data => { console.log(data)
       localStorage.setItem("token",data.jwtToken)
-      window.location.href = "/SRC/HTML/homepage.html"
+      window.location.href = "/Users/ASUS/Desktop/WebsitePodcast/FE/SRC/HTML/homepage.html"
      })
     .catch((err) => {
       console.error(err);
